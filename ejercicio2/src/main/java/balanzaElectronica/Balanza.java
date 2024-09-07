@@ -51,7 +51,13 @@ public class Balanza {
 	
 	
 	public void agregarProducto (Producto producto) {
-		
+		this.cantidadDeProductos++;
+		this.precioTotal += producto.getPrecio();
+		this.pesoTotal += producto.getPeso();
+	}
+	
+	public Ticket emitirTicket() {
+		return new Ticket (this.cantidadDeProductos,this.pesoTotal,this.precioTotal);
 	}
 	
 }
