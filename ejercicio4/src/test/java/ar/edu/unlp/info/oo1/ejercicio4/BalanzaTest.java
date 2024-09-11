@@ -7,10 +7,6 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import balanzaElectronica.Balanza;
-import balanzaElectronica.Producto;
-import balanzaElectronica.Ticket;
-
 public class BalanzaTest {
  
   private Balanza balanza;
