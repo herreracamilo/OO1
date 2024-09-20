@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Farola {
-	private boolean farola;
+	private boolean prendida;
 	private List<Farola> listaVecinos;
 	
 	public Farola() {
-		this.farola = false;
+		this.prendida = false;
 		this.listaVecinos = new ArrayList<Farola>();
 	}
 	
@@ -33,6 +33,12 @@ public class Farola {
 	* Si la farola no está encendida, la enciende y propaga la acción.
 	*/
 	public void turnOn() {
+		if(this.isOff()) {
+			this.prendida = true;
+			for (Farola vecino : listaVecinos) {
+				vecino.turnOn();
+			}
+		}
 		
 	}
 
@@ -40,6 +46,12 @@ public class Farola {
 	* Si la farola no está apagada, la apaga y propaga la acción.
 	*/
 	public void turnOff() {
+		if(this.isOn()) {
+			this.prendida = false;
+			for (Farola vecino : listaVecinos) {
+				vecino.turnOff();
+			}
+		}
 		
 	}
 	
@@ -47,7 +59,11 @@ public class Farola {
 	* Retorna true si la farola está encendida.
 	*/
 	public boolean isOn() {
-		
+	    return this.prendida;
+	}
+	
+	public boolean isOff() {
+	    return !this.prendida;
 	}
 
 }
