@@ -1,7 +1,7 @@
 package ar.edu.unlp.info.oo1.ejercicio9;
 
 public abstract class Cuenta {
-	protected double saldo;
+	private double saldo;
 
 	public Cuenta() {
 		this.saldo = 0;
