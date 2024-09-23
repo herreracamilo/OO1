@@ -1,24 +1,43 @@
 package ar.edu.unlp.info.oo1.ejercicio9;
 
 public class CajaDeAhorro extends Cuenta {
+	private double costo_adicional = 1.02;
 	
-	
+	public CajaDeAhorro(double monto) {
+		this.saldo = monto;
+	}
+
 	@Override
 	public boolean extraer(double monto) {
-		// TODO Auto-generated method stub
-		return super.extraer(monto*1.02);
+		return super.extraer(monto*costo_adicional);
 	}
 	
 	@Override
+	protected boolean puedeExtraer(double monto) {
+		double montoConCosto = monto * costo_adicional;
+		if(this.getSaldo() >= montoConCosto) {
+			return true;
+		}
+		return false;
+	}
+	
+	
+	@Override
+	protected void extraerSinControlar(double monto) {
+		double montoConCosto = monto * costo_adicional;
+		super.extraerSinControlar(montoConCosto);
+	}
+	
+	
+	@Override
 	public boolean transferirACuenta(double monto, Cuenta cuentaDestino) {
-		// TODO Auto-generated method stub
-		return super.transferirACuenta(monto*1.02, cuentaDestino);
+		return super.transferirACuenta(monto, cuentaDestino);
 	}
 	
 	@Override
 	public void depositar(double monto) {
-		// TODO Auto-generated method stub
-		super.depositar(monto*1.02);
+		double montoConCosto = (monto -(monto * costo_adicional));
+		this.saldo += montoConCosto;
 	}
 	
 	
