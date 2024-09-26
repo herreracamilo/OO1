@@ -3,11 +3,13 @@ package ar.edu.unlp.info.oo1.ejercicio9;
 public class CajaDeAhorro extends Cuenta {
 	private double costo_adicional = 0.02;
 	
+	private double montoConCosto(double monto) {
+		return monto * (this.costo_adicional + 1);
+	}
 	
 	@Override
 	protected boolean puedeExtraer(double monto) {
-		double montoConCosto = monto * (costo_adicional + 1);
-		if(this.getSaldo() >= montoConCosto) {
+		if(this.getSaldo() >= montoConCosto(monto)) {
 			return true;
 		}
 		return false;
@@ -16,16 +18,13 @@ public class CajaDeAhorro extends Cuenta {
 	
 	@Override
 	protected void extraerSinControlar(double monto) {
-		double montoConCosto = monto * (costo_adicional + 1);
-		super.extraerSinControlar(montoConCosto);
+		super.extraerSinControlar(montoConCosto(monto));
 	}
-	
 	
 	
 	@Override
 	public void depositar(double monto) {
-		double montoConCosto = (( monto * costo_adicional));
-		super.depositar(monto-montoConCosto);
+		super.depositar(monto-(monto * costo_adicional));
 	}
 	
 	
