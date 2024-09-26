@@ -37,18 +37,17 @@ public class ViceversaTest {
 	
 	
 	@Test
-	void testTransferirACajaDeAhorro() {
+	void testTransferencias() {
 		camilo.transferirACuenta(1500, juan);
 		assertEquals(-500, camilo.getSaldo());
 		assertEquals(1470, juan.getSaldo()); // 1470 por el 2% de comision
+		assertEquals(-500, camilo.getSaldo());
+		juan.transferirACuenta(1440.6, camilo);
+		assertEquals(0.5879999999999654, juan.getSaldo());
+		assertEquals(940.5999999999999, camilo.getSaldo());
 	}
 	
-	@Test
-	void testTransferirACuentaCorriente() {
-		juan.transferirACuenta(1440.6, camilo);
-		assertEquals(0, juan.getSaldo());
-		assertEquals(912, camilo.getSaldo()); // ACA DA EROR!!!!! -PREGUNTAR-
-	}
+	
 	
 	
 }
