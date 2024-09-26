@@ -22,7 +22,7 @@ public class InversionesTest {
 	void setUp() {
 		accion1 = new InversionEnAcciones("empresa 1", 100, 50.0); // 100 acciones a $50 cada una
         accion2 = new InversionEnAcciones("empresa 2", 200, 75.0); // 200 acciones a $75 cada una
-        plazoFijo1 = new PlazoFijo(LocalDate.now().minusDays(30), 10000, 0.1); // Plazo Fijo de 30 días, $10000, con 0.1%
+        plazoFijo1 = new PlazoFijo(LocalDate.now().minusDays(30), 10000, 0.1); // plazo Fijo de 30 días, $10000, con 0.1%
         
         inversor = new Inversor("camilo");
         inversor.agregarInversion(accion1);
@@ -50,7 +50,7 @@ public class InversionesTest {
 	        double valorAcciones = 5000.0 + 15000.0; // suma de las acciones
 	        double valorPlazoFijo = 10000 * Math.pow(1.001, 30); // valor del plazo fijo después de 30 días
 
-	        // Valor total esperado
+	        // valor total esperado
 	        double valorTotalEsperado = valorAcciones + valorPlazoFijo;
 
 	        assertEquals(valorTotalEsperado, inversor.valorActual(), 0.01);
