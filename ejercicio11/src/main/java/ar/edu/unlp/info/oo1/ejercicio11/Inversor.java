@@ -3,7 +3,7 @@ package ar.edu.unlp.info.oo1.ejercicio11;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Inversor implements Inversion {
+public class Inversor {
 	private String nombre;
 	List<Inversion> inversiones;
 	
@@ -20,7 +20,6 @@ public class Inversor implements Inversion {
 		this.inversiones.add(nueva);
 	}
 
-	@Override
 	public double valorActual() {
 		double valor =0;
 		for(Inversion i : this.inversiones) {

@@ -1,6 +1,7 @@
 package ar.edu.unlp.info.oo1.ejercicio11;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class PlazoFijo implements Inversion {
 	private LocalDate fechaDeConstitucion;
@@ -45,7 +46,7 @@ public class PlazoFijo implements Inversion {
 	@Override
 	public double valorActual() {
 		LocalDate fechaActual = LocalDate.now();
-		long diasTranscurridos =  fechaActual.toEpochDay() - this.fechaDeConstitucion.toEpochDay(); 
+		long diasTranscurridos = ChronoUnit.DAYS.between(fechaDeConstitucion, fechaActual);
 		return this.montoDepositado * Math.pow(1+(porcentajeDelInteresDiario/100), diasTranscurridos);
 	}
 	
