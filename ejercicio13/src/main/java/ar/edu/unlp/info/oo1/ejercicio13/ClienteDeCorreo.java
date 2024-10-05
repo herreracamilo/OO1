@@ -38,4 +38,15 @@ public class ClienteDeCorreo{
 		}
 		return suma;
 	}
+	
+	/*
+	 *  preguntar el metodo de abajo si es necesario o como solucionarlo
+	 *  porque como hago para mover emails desde el inbox sino?
+	 */
+	
+	public void moverDesdeInbox(Email email, Carpeta destino) {
+		if(email != null && destino != null) {
+			this.inbox.mover(email, destino);
+		}
+	}
 }

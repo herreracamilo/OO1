@@ -39,7 +39,7 @@ public class Carpeta{
 	public int espacioCarpetas() {
 		int suma =0;
 		for(Email e : emails) {
-			e.tamanoTotal();
+			suma+= e.tamanoTotal();
 		}
 		return suma;
 	}

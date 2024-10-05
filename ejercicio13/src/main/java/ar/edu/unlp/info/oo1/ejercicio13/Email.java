@@ -30,13 +30,13 @@ public class Email{
 	}
 	
 	public int tamanoTotal() {
-		int suma=0;
 		int tamanoTitulo = this.titulo.length();
 		int tamanoCuerpo = this.cuerpo.length();
+		int suma= tamanoCuerpo + tamanoTitulo;
 		for(Archivo a : this.archivos) {
 			suma+= a.tamano();
 		}
-		return (suma + tamanoCuerpo + tamanoTitulo);
+		return (suma);
 	}
 	
 }
