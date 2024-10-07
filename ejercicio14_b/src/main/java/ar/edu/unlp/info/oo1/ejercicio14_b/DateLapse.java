@@ -31,7 +31,7 @@ public class DateLapse implements DateLapseInterface{
 
     @Override
     public boolean includesDate(LocalDate other) {
-        return (other.isEqual(this.from) || other.isAfter(this.from)) && other.isBefore(this.getTo());
+        return (other.isEqual(this.getFrom()) || other.isAfter(this.getFrom()) && other.isBefore(this.getTo()));
     }
 
 
