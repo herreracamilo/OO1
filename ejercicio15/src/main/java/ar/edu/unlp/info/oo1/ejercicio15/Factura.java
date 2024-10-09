@@ -5,14 +5,29 @@ import java.time.LocalDate;
 public class Factura{
 	private LocalDate fecha;
 	private double montoFinal;
-	private double descuento;
+	private double descuentoAplicado;
 	
 	/*la factura tiene que imprimir los datos que tiene como propios nada mas
 	 * no tiene que hacer calculos o cosas con if y eso
 	 * tiene que ser simple
 	 */
-	public Factura() {
-		
+	
+	public Factura(double montoFinal, double descuentoAplicado) {
+		this.fecha = LocalDate.now();
+		this.montoFinal = montoFinal;
+		this.descuentoAplicado = descuentoAplicado;
+	}
+
+	public LocalDate getFecha() {
+		return fecha;
+	}
+
+	public double getMontoFinal() {
+		return montoFinal;
+	}
+
+	public double getDescuentoAplicado() {
+		return descuentoAplicado;
 	}
 	
 	
