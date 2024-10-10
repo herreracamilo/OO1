@@ -30,5 +30,12 @@ public class Factura{
 		return descuentoAplicado;
 	}
 	
+// para test
+	@Override
+	public String toString() {
+		return "Factura [fecha=" + this.fecha + ", montoFinal=" + this.montoFinal + ", descuentoAplicado=" + this.descuentoAplicado
+				+ "]";
+	}
+	
 	
 }

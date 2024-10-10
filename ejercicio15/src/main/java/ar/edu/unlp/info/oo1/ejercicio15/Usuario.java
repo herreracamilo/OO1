@@ -6,11 +6,13 @@ public class Usuario {
 	private String nombre;
 	private String domicilio;
 	private Consumo consumo;
+	private CuadroTarifario cuadro;
 	
-	public Usuario(String nombre, String domicilio, Consumo consumo) {
+	public Usuario(String nombre, String domicilio, Consumo consumo, CuadroTarifario cuadro) {
 		this.nombre = nombre;
 		this.domicilio = domicilio;
 		this.consumo = consumo;
+		this.cuadro = cuadro;
 	}
 	
 	public String getNombre() {
@@ -22,7 +24,7 @@ public class Usuario {
 	}
 	
 	public double getCostoDeConsumo() {
-		return (this.consumo.getConsumoEnergiaActiva() * getCostoDeConsumo());
+		return (this.consumo.getConsumoEnergiaActiva() * this.cuadro.getPrecioDelKW());
 	}
 	
 	public boolean obtieneBonificacion() {

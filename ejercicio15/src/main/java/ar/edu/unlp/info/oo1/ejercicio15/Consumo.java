@@ -22,7 +22,9 @@ public class Consumo{
 	
 	
 	public double factorDePotencia() {
-		return (getConsumoEnergiaActiva() / (Math.sqrt((Math.pow(2, getConsumoEnergiaActiva()))+(Math.pow(2, getConsumoEnergiaReactiva())))));
+	    return getConsumoEnergiaActiva() / 
+	           Math.sqrt(Math.pow(getConsumoEnergiaActiva(), 2) + 
+	                     Math.pow(getConsumoEnergiaReactiva(), 2));
 	}
 	
 	
