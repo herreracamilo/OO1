@@ -27,5 +27,8 @@ public class Consumo{
 	                     Math.pow(getConsumoEnergiaReactiva(), 2));
 	}
 	
+	public boolean bonificacion() {
+		return (factorDePotencia()>0.8);
+	}
 	
 }

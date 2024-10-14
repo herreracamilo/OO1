@@ -16,9 +16,10 @@ public class Ejercicio15Test {
         
         
         cuadroTarifario = new CuadroTarifario(10); // precio por kWh = 10
+       
         
-        
-        camilo = new Usuario("camilo herrera", "1 y 57", consumo,cuadroTarifario);
+        camilo = new Usuario("camilo herrera", "1 y 57", cuadroTarifario);
+        camilo.agregarConsumo(consumo);
     }
     
     @Test
@@ -34,8 +35,8 @@ public class Ejercicio15Test {
         // aca seria positivo porque el fpe da 0.99
         Consumo nuevoConsumo = new Consumo(800, 100); // factor de potencia alto
         cuadroTarifario = new CuadroTarifario(10);
-        Usuario user = new Usuario("camilo herrera", "1 y 57", nuevoConsumo, cuadroTarifario);
-        
+        Usuario user = new Usuario("camilo herrera", "1 y 57", cuadroTarifario);
+        user.agregarConsumo(nuevoConsumo);
         assertTrue(user.obtieneBonificacion());
     }
     
@@ -55,7 +56,8 @@ public class Ejercicio15Test {
         // modifico el consumo para tener un factor de potencia > 0.8
     	Consumo nuevoConsumo = new Consumo(800, 100); // factor de potencia alto
         cuadroTarifario = new CuadroTarifario(10);
-        Usuario user = new Usuario("camilo herrera", "1 y 57", nuevoConsumo, cuadroTarifario);
+        Usuario user = new Usuario("camilo herrera", "1 y 57",cuadroTarifario);
+        user.agregarConsumo(nuevoConsumo);
         
         // emito una factura con bonificación
         Factura factura = user.emitirFactura();
