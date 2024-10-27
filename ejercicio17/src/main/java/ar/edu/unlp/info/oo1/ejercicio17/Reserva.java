@@ -38,4 +38,6 @@ public class Reserva {
 		return this.fecha.getFrom().isAfter(hoy);
 	}
 	
+	
+	
 }

@@ -34,13 +34,14 @@ public class Usuario {
 	public void agregarPropiedad(Propiedad propiedad) {
 		this.propiedades.add(propiedad);
 	}
-	
+	// tiene mas sentido que todas estas cosas las haga propiedad y el usuario nada mas reciba la reserva para guardarla
 	public void crearReserva(Propiedad propiedad,LocalDate fechaInicio,LocalDate fechaFinal) {
-		if(propiedad.estaDisponible(fechaInicio, fechaFinal)) {
-			Reserva nuevaReserva = new Reserva(fechaInicio, fechaFinal, propiedad);
-			this.reservas.add(nuevaReserva);
-			propiedad.agregarReserva(nuevaReserva);
-		}else System.out.println("ERROR! propiedad no disponible");
+			Reserva nuevaReserva = propiedad.hacerReserva(propiedad, fechaInicio, fechaFinal);
+			if(nuevaReserva!=null) {
+				this.reservas.add(nuevaReserva);
+				System.out.println("reserva realizada ;)");
+			}else System.out.println("reserva NO realizada :(");
+				
 	}
 	
 	
@@ -52,27 +53,32 @@ public class Usuario {
 		}else System.out.println("NO se canceló la reserva");
 	}
 	
+	/* el usuario no debe hacer cosas que no le interesan, él 
+	 * solo quiere conocer el valor de los ingresos
+	 * entonces no tiene porque ir a reservas y mapear esas reservas,
+	 * solo tengo que iterar por propiedades consiguiendo el monto
+	 */
 	public double calcularIngresos(DateLapse fecha) {
 		return propiedades.stream()
-				.flatMap(propiedad -> propiedad.getReservas().stream())
-				.filter(reserva -> reserva.getFecha().overlaps(fecha))
-				.mapToDouble(reserva -> reserva.calcularPrecio())
+				.mapToDouble(propiedad -> propiedad.montoPropiedad(fecha))
 				.sum() * 0.75;
 	}
-	/*
-	 * flatMap hace que si tengo esto:
-	 * Propiedad 1 -> [Reserva 1, Reserva 2]
-	   Propiedad 2 -> [Reserva 3, Reserva 4]
-	   lo transforme en esto:
-	   [Reserva 1, Reserva 2, Reserva 3, Reserva 4]
-	   
-	   filter va a filtrar por los que se superpongan con la fecha que mando
-	   va a dejar los que se superponen
-	   
-	   mapToDouble va a transformar cada reserva en un double que será el
-	   precio por noche
-	   
-	   como ahora el stream es de double uso el stream con sum para sumarlos a todos
-	   y multiplicarles el 75%
-	 */
 }
+
+
+/*
+ * flatMap hace que si tengo esto:
+ * Propiedad 1 -> [Reserva 1, Reserva 2]
+   Propiedad 2 -> [Reserva 3, Reserva 4]
+   lo transforme en esto:
+   [Reserva 1, Reserva 2, Reserva 3, Reserva 4]
+   
+   filter va a filtrar por los que se superpongan con la fecha que mando
+   va a dejar los que se superponen
+   
+   mapToDouble va a transformar cada reserva en un double que será el
+   precio por noche
+   
+   como ahora el stream es de double uso el stream con sum para sumarlos a todos
+   y multiplicarles el 75%
+ */

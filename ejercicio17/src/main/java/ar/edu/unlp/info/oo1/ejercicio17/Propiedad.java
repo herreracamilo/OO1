@@ -47,7 +47,26 @@ public class Propiedad {
 	public List<Reserva> getReservas() {
 		return reservas;
 	}
+	/*
+	 * recorro la coleccion de reservas que tiene la propiedad y 
+	 * sumo los precios
+	 * de las
+	 * que estan dentro del periodo que me envian
+	 */
+	public double montoPropiedad(DateLapse periodo) {
+		return this.reservas.stream()
+				.filter(reserva -> reserva.getFecha().overlaps(periodo))
+				.mapToDouble(reserva -> reserva.calcularPrecio())
+				.sum();
+	}
 	
 	
+	public Reserva hacerReserva(Propiedad propiedad,LocalDate fechaInicio,LocalDate fechaFinal) {
+		if(propiedad.estaDisponible(fechaInicio, fechaFinal)) {
+			Reserva nuevaReserva = new Reserva(fechaInicio, fechaFinal, propiedad);
+			this.reservas.add(nuevaReserva);
+			return nuevaReserva;
+		}else return null;
+	}
 	
 }
