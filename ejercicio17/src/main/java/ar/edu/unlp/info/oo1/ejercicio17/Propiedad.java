@@ -69,4 +69,13 @@ public class Propiedad {
 		}else return null;
 	}
 	
+	public boolean cancelarReserva(Reserva reserva, LocalDate hoy) {
+	    if (reserva.puedeCancelar(hoy)) {
+	        this.reservas.remove(reserva); // elimino la reserva
+	        return true; // retorno que cancelé la reserva para que el usuario la borre de su coleccion
+	    }
+	    return false; // retorno false si no se puede cancelar
+	}
+
+	
 }

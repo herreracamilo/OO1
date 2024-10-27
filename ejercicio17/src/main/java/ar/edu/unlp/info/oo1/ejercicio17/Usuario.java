@@ -46,9 +46,8 @@ public class Usuario {
 	
 	
 	public void cancerlarReserva(Reserva reserva, LocalDate hoy) {
-		if(reserva.puedeCancelar(hoy)) {
+		if(reserva.getPropiedad().cancelarReserva(reserva, hoy)) {
 			this.reservas.remove(reserva);
-			reserva.getPropiedad().eliminarReserva(reserva);
 			System.out.println("se canceló la reserva");
 		}else System.out.println("NO se canceló la reserva");
 	}
