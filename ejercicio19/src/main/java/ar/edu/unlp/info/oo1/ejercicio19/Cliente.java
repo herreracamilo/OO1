@@ -30,14 +30,14 @@ public abstract class Cliente {
 		this.envios.add(envio);
 	}
 	
+	public abstract double descuentoCliente();
+	
 	public double calcularMontoEnPeriodo(DateLapse periodo) {
 		double total = this.envios.stream()
 				.filter(envio -> periodo.includesDate(envio.getFechaDespacho()))
-				.mapToDouble(Envio::calcularPrecioEnvio)
+				.mapToDouble(envio -> envio.calcularPrecioEnvio())
 				.sum();
-		if(this instanceof PersonaFisica) {
-			total*=0.9;
-		}
+		total*= descuentoCliente();
 		return total;
 	}
 	
